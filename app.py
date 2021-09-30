@@ -102,7 +102,7 @@ def homepage():
             name_image.append(n_i)
         return render_template('homepage.html',user=g.user,favorites=name_image,rtrigger=rtrigger,strigger=strigger)
     else:
-        return redirect('signup')
+        return redirect('/signup')
 
 
 @app.route("/random")
