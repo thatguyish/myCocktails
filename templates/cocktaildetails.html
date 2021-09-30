@@ -1,0 +1,19 @@
+{%extends 'base.html'%}
+{%block content%}
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="card text-center border-dark" style="width: 30rem;">
+            <img src="{{image_data}}" class="card-img-top" alt="...">
+            {{cocktail.name}}
+            <div class="row justify-content-center">
+                {% for ingredient in cocktail.ingredients%}
+                <div class="col">{{ingredient.name}}</div>
+                {%endfor%}
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+<br>
+{%endblock%}

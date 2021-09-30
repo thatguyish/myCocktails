@@ -1,0 +1,68 @@
+{%extends 'base.html'%}
+{%block content%}
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="card text-center border-dark" style="width: 30rem;">
+            <div class="d-flex flex-row">
+                <h1 class="col ps-5 ms-2">Hello {{user.username}}</h1>
+                <a class="" href="/signout">Signout</a>
+            </div>
+            <a href="/random" class="btn btn-primary">Random Cocktail</a>
+            <br>
+            <div class="row justify-content-center">
+                <div class="card border-dark"
+                    style="display:{% if rtrigger==False %} none {% else %}block{% endif %}; width:90%">
+                    <img src="{{random_drink_image}}" class="card-img-top" alt="...">
+                    {{random_drink_name}}
+                    <div class="row justify-content-center">
+                        {% for ingredient in random_drink_ingredients%}
+                        <div class="col">{{ingredient}}</div>
+                        {%endfor%}
+                        <a href="/addtofavorites/{{drink_id}}" class="btn btn-primary">Add to Favorites</a>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <br>
+            <form action="/search/" method="post">
+                <button type="submit" class="btn btn-primary">Search for a cocktail</button>
+                    <input type="text" name="search_input">
+            </form>
+            <br>
+            <div class="row justify-content-center">
+                <div class="card border-dark"
+                    style="display:{% if strigger==False %} none {% else %}block{% endif %}; width:90%">
+                    <img src="{{search_drink_image}}" class="card-img-top" alt="...">
+                    {{search_drink_name}}
+                    <div class="row justify-content-center">
+                        {% for ingredient in search_drink_ingredients%}
+                        <div class="col">{{ingredient}}</div>
+                        {%endfor%}
+                        <a href="/addtofavorites/{{drink_id}}" class="btn btn-primary">Add to Favorites</a>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <br>
+            <div class="row justify-content-center">
+                <br>
+                <div class="card border-dark" style="width: 90%;">
+                    <h1>Favorites</h1>
+                    <!-- list all favorites -->
+                    <div class="card-body">
+                        <ul>
+                            {%for favorite in favorites%}
+                            <li><a href="/cocktaildetails/{{favorite[2]}}"><img style="width: 100px; height: 100px;" src="{{favorite[0]}}" alt="...">{{favorite[1]}}</a></li>
+                            <br>
+                            {%endfor%}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+<br>
+{%endblock%}
